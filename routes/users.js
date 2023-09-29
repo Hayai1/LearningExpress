@@ -31,6 +31,11 @@ router.route("/:id")
     
 });
 
+const users = [{name: "John"}, {name: "Jane"}];
 
+router.param("id", (req, res, next, id) => {//runs between the request and the route handler
+    req.user = users[id];
+    next();
+})
 
 module.exports = router;
