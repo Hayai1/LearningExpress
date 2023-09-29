@@ -11,11 +11,13 @@ router.get("/", (req, res) => {
 });
 
 router.get("/new", (req, res) => {
-    res.send("user new form");
-
-
+    res.render("users/new", { firstName: "Test" });
 });
 
+router.post("/", (req, res) => {
+    console.log(req.body.firstName);//gave the body in new.ejs a name of firstName and this is how we access it
+    res.send("Hi");
+})
 
 router.route("/:id")
 .get((req, res) => {
