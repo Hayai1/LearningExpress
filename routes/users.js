@@ -15,8 +15,15 @@ router.get("/new", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-    console.log(req.body.firstName);//gave the body in new.ejs a name of firstName and this is how we access it
-    res.send("Hi");
+    const isValid = true;
+    if (isValid) {
+        users.push({firstName : req.body.firstName})//adds the new user to the array
+        res.redirect(`/users/${users.length - 1}`);//redirects to the new user's page
+    } else {
+        console.log("error");
+        res.render("users/new", { firstName: req.body.firstName });//redirects back to the form with the data that was entered
+    }
+    
 })
 
 router.route("/:id")
