@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
+
+router.use(logger);//runs logger on all requests
+
 router.get("/", (req, res) => {
     res.send("user list");
 
@@ -39,5 +42,10 @@ router.param("id", (req, res, next, id) => {//runs between the request and the r
 
     next();
 })
+
+function logger(req, res, next) {
+    console.log(req.originalUrl);
+    next();
+}
 
 module.exports = router;
