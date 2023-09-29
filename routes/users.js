@@ -17,6 +17,7 @@ router.get("/new", (req, res) => {
 router.route("/:id")
 .get((req, res) => {
     const userID = req.params.id;
+    console.log(req.user)
     res.send(`get user with id ${userID}`)
     
 })
@@ -35,6 +36,7 @@ const users = [{name: "John"}, {name: "Jane"}];
 
 router.param("id", (req, res, next, id) => {//runs between the request and the route handler
     req.user = users[id];
+
     next();
 })
 
